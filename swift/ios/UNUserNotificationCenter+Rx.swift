@@ -32,4 +32,26 @@ extension Reactive where Base: UNUserNotificationCenter {
             return Disposables.create()
         }
     }
+
+    func pendingNotificationRequests() -> Observable<[UNNotificationRequest]> {
+        let center = base
+        return Observable<[UNNotificationRequest]>.create { observable in
+            center.getPendingNotificationRequests { requests in
+                observable.onNext(requests)
+                observable.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
+
+    func deliveredNotificationRequests() -> Observable<[UNNotificationRequest]> {
+        let center = base
+        return Observable<[UNNotificationRequest]>.create { observable in
+            center.getPendingNotificationRequests { requests in
+                observable.onNext(requests)
+                observable.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
 }
