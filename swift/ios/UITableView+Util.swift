@@ -1,7 +1,7 @@
 import UIKit
 
 extension UITableView {
-    func registerCell<T>(type: T.Type, usingNib: Bool = false) where T: UITableViewCell {
+    func registerCell<T: UITableViewCell>(type: T.Type, usingNib: Bool = false) {
         if usingNib {
             guard let nibName = String(describing: T.self).components(separatedBy: ".").last else {
                 fatalError()
@@ -13,7 +13,7 @@ extension UITableView {
         }
     }
 
-    func dequeueReusableCell<T>(indexPath: IndexPath) -> T where T: UITableViewCell {
+    func dequeueReusableCell<T: UITableViewCell>(indexPath: IndexPath) -> T {
         guard let cell = dequeueReusableCell(withIdentifier: String(describing: T.self), for: indexPath) as? T else {
             fatalError()
         }
