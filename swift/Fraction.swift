@@ -35,4 +35,24 @@ struct Fraction: Comparable, Equatable, Codable, Hashable {
             return self
         }
     }
+
+    private static func gcd(a: Int, b: Int) -> Int {
+        assert(a != 0 && b != 0)
+        var i = a, j = b
+        
+        if i < j {
+            swap(&i, &j)
+         }
+
+        while true {
+            let l = i % j
+            if l == 0 {
+                break
+            }
+            i = j
+            j = l
+        }
+        
+        return abs(j)
+    }
 }
