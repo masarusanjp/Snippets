@@ -1,3 +1,5 @@
+import Foundation
+
 struct Fraction: Comparable, Equatable {
     static func < (lhs: Fraction, rhs: Fraction) -> Bool {
         if lhs.decimal == rhs.decimal {
