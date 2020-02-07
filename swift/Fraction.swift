@@ -1,6 +1,6 @@
 import Foundation
 
-struct Fraction: Comparable, Equatable {
+struct Fraction: Comparable, Equatable, Codable, Hashable {
     static func < (lhs: Fraction, rhs: Fraction) -> Bool {
         if lhs.decimal == rhs.decimal {
             if lhs.denominator == rhs.denominator {
@@ -19,11 +19,12 @@ struct Fraction: Comparable, Equatable {
 
     var numerator: Int
     var denominator: Int
-    var decimal: Decimal
+    var decimal: Decimal {
+        Decimal(numerator) / Decimal(denominator)
+    }
     init(numerator: Int, denominator: Int) {
         self.numerator = numerator
         self.denominator = denominator
-        self.decimal = Decimal(numerator) / Decimal(denominator)
     }
     
     var reduction: Fraction {
